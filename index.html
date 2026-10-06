@@ -46,10 +46,7 @@ footer{text-align:center;color:var(--dim);font-size:.85rem;padding:30px 0 40px}
 </style>
 </head>
 <body>
-<div class="tools">
-  <button id="reset" type="button">Reset</button>
-  <button id="toggle" type="button">Edit page</button>
-</div>
+
 <div id="content">
 <header><div class="wrap">
   
@@ -125,10 +122,7 @@ footer{text-align:center;color:var(--dim);font-size:.85rem;padding:30px 0 40px}
     try{localStorage.setItem(KEY,c.innerHTML);}catch(e){}}
   function digits(sel){var el=content.querySelector(sel);return el?el.textContent.replace(/\D/g,''):'';}
 
-  toggle.addEventListener('click',function(){
-    editing=!editing; document.body.classList.toggle('editing',editing);
-    toggle.textContent=editing?'Done':'Edit page'; setEditable(editing); if(!editing) save();});
-
+  
   var rb=document.getElementById('reset'), rt=null;
   function disarm(){clearTimeout(rt);rb.classList.remove('armed');rb.textContent='Reset';}
   rb.addEventListener('click',function(){
