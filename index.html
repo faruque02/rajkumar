@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Rajkumar F - Clothing Store</title>
 
-<style>.tools{display:none}</style>
+
 <style>
 :root{--bg:#fbf3e6;--card:#fffaf1;--text:#3a2a1d;--accent:#c4552d;--accent2:#2f7d5b;--line:#ecd9bd;--dim:#7a6450;--tint:#f6e3c8}
 *,*::before,*::after{box-sizing:border-box}
@@ -110,7 +110,7 @@ footer{text-align:center;color:var(--dim);font-size:.85rem;padding:30px 0 40px}
 
 <script>
 (function(){
-  var KEY='shop-447971a6', CC='88';
+  var KEY='shop-a7eaa064', CC='88';
   var content=document.getElementById('content'), toggle=document.getElementById('toggle');
   var original=content.innerHTML, editing=false;
   try{var s=localStorage.getItem(KEY); if(s) content.innerHTML=s;}catch(e){}
@@ -122,10 +122,13 @@ footer{text-align:center;color:var(--dim);font-size:.85rem;padding:30px 0 40px}
     try{localStorage.setItem(KEY,c.innerHTML);}catch(e){}}
   function digits(sel){var el=content.querySelector(sel);return el?el.textContent.replace(/\D/g,''):'';}
 
-  
+  if(toggle) toggle.addEventListener('click',function(){
+    editing=!editing; document.body.classList.toggle('editing',editing);
+    toggle.textContent=editing?'Done':'Edit page'; setEditable(editing); if(!editing) save();});
+
   var rb=document.getElementById('reset'), rt=null;
   function disarm(){clearTimeout(rt);rb.classList.remove('armed');rb.textContent='Reset';}
-  rb.addEventListener('click',function(){
+  if(rb) rb.addEventListener('click',function(){
     if(!rb.classList.contains('armed')){rb.classList.add('armed');rb.textContent='Tap again to reset';rt=setTimeout(disarm,4000);return;}
     disarm(); try{localStorage.removeItem(KEY);}catch(e){}
     content.innerHTML=original; setEditable(editing);});
